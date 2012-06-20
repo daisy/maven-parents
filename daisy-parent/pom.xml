@@ -24,6 +24,19 @@
       <distribution>manual</distribution>
     </license>
   </licenses>
+  <developers>
+    <developer>
+      <id>rdeltour</id>
+      <name>Romain Deltour</name>
+      <email>rdeltour@gmail.com</email>
+      <organization>DAISY Consortium</organization>
+      <organizationUrl>http://www.daisy.org/</organizationUrl>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>UTC+01:00</timezone>
+    </developer>
+  </developers>
 
   <scm>
     <connection>scm:git:git://github.com/daisy-consortium/maven-parents.git</connection>
