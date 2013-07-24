@@ -1,12 +1,11 @@
 language: java
-before_install: git clone -b travis https://github.com/daisy-consortium/maven-parents.git
-  target/travis
-script: mvn verify
-after_success: mvn deploy -DskipTests -Dinvoker.skip=true --settings target/travis/settings.xml
+before_install: git clone -b travis https://github.com/daisy-consortium/maven-parents.git target/travis
+script: sh -c 'cd daisy-parent && mvn verify'
+after_success: sh -c 'cd daisy-parent && mvn deploy -DskipTests -Dinvoker.skip=true --settings ../target/travis/settings.xml'
 branches:
   only:
   - master
 env:
   global:
-  - secure: G9egvmcnjKaFM17X9wH0vVhNu1YGGg5fRn2Em93ztP+04SZiRg9a1uPpyGKzPy4g6ZT+4Sy16SLK54IwvfvyMWhsF2yLl/zqCxBNQ6DA1LYd13l6QI2xdu48vMA93BWueVwwy+oM9e3RostAthgM7ROyVUr2OTR4mzq39MJCS+4=
-  - secure: oA3ZqlwS4CxzA6GJRDCvbkDvEkzAwibuta899d7BwIasVrwhfB+noqVlOVfV2FtK6h2694PPyoXZ4+5P1wUM0fJeUgCJmGh5u4hN1gTTaUx8t1p9AA0MTREz6egi/lmaKzbC0Jmkmje2QC2mmo2ExIYpxyEaFAeKgcznQuw5JHE=
+  - secure: "pq1pHAqPSXlGr2MRS/Zg4476/7RVb3RRaQuM+kGBE3c9YNuXM8hWbvKlVKoz3G2eX7h30HHmnWrB2Ui/sihnSf7FByBR7BrG/YHEppB7OwvzmipGWR6ITQDImtjmgPSIZP+GDgfSG03IZUkBMUpzbg5vzCmt9jyA5csgR2ZLU/w="
+  - secure: "rPu1NQI6cUoxRL763JgvRJuyJC40vpXMUF4H2W/UStIYKaz4bWMfVc+ebYTp9kXlavp63zztbtGMoFVtzLLy5TPnllwSfDzZZPsV4dDleFlah68Yz4NhpJeuwUnnZc1Vq6cL3rSV+dE2z+pDQYIIJaNCVNJI9+XOeYOFv/l4Qkw="
