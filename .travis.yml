@@ -1,0 +1,6 @@
+language: java
+
+# whitelist; only deploy master branch
+branches:
+  only:
+  - master
