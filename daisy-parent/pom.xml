@@ -197,6 +197,9 @@
             <mavenExecutorId>forked-path</mavenExecutorId>
             <useReleaseProfile>false</useReleaseProfile>
             <arguments>-Psonatype-oss-release</arguments>
+            <localCheckout>true</localCheckout>
+            <pushChanges>false</pushChanges>
+            <goals>deploy</goals>
           </configuration>
         </plugin>
         <plugin>
