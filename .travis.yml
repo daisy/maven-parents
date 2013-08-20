@@ -5,6 +5,7 @@ script: sh -c 'cd daisy-parent; mvn verify'
 
 # if the build succeeds, deploy the artifact (tests are skipped)
 after_success:
+  - cd daisy-parent
   - git clone -b travis https://github.com/daisy-consortium/maven-parents.git target/travis
   - ./target/travis/maven_deploy.sh
 
