@@ -206,7 +206,9 @@
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-provider-gitexe</artifactId>
               <!-- This version is necessary for use with git version 1.8.5 -->
-              <version>1.8.1</version>
+              <!-- see http://jira.codehaus.org/browse/MRELEASE-812-->
+              <!-- and https://jira.codehaus.org/browse/SCM-740-->
+              <version>1.9</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -223,7 +225,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-scm-plugin</artifactId>
-          <version>1.8.1</version>
+          <version>1.9</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
