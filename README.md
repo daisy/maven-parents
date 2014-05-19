@@ -15,5 +15,5 @@ It notably configures the `sonatype-nexus-snapshots` repo credentials using the 
 </servers>
 ```
 
-See for example the [Travis CI configuration](https://github.com/daisy-consortium/xspec-maven-plugin/blob/master/.travis.yml) of the daisy-consortium/xspec-maven-plugin project to see how this 
+See for example the [Travis CI configuration](https://github.com/daisy/xspec-maven-plugin/blob/master/.travis.yml) of the daisy/xspec-maven-plugin project to see how this 
 is first checked out then used with Maven to deploy the build artifacts to Sonatype's OSS repository.
