@@ -98,6 +98,19 @@
         </repository>
       </repositories>
     </profile>
+    <profile>
+      <id>staging-repos</id>
+      <repositories>
+        <repository>
+          <id>sonatype-staging</id>
+          <url>https://oss.sonatype.org/content/groups/staging</url>
+        </repository>
+      </repositories>
+    </profile>  
   </profiles>
-  <!-- <activeProfiles/> -->
+
+  <activeProfiles>
+    <activeProfile>staging-repos</activeProfile>
+  </activeProfiles>
+
 </settings>
