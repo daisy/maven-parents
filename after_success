@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+if [ "$TRAVIS_BRANCH" == "master" ] || [[ "$TRAVIS_BRANCH" == super/* ]] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   mvn deploy -DskipTests -Dinvoker.skip=true
 else
   echo "Skipping Maven deploy."

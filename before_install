@@ -1,3 +1,8 @@
 #!/bin/bash
 echo "Copying Maven settings to '$HOME/.m2/settings.xml'"
 (curl -fsSL https://raw.github.com/daisy/maven-parents/travis/settings.xml) > $HOME/.m2/settings.xml
+
+if [[ "$TRAVIS_BRANCH" == super/* ]]; then
+    echo "Changing SNAPSHOT versions to '${TRAVIS_BRANCH#super/}-SNAPSHOT'"
+    find . -name pom.xml -exec sh -c "cat {} | sed 's/-SNAPSHOT/-${TRAVIS_BRANCH#super/}-SNAPSHOT/' > {}.tmp && mv {}.tmp {}" \;
+fi
