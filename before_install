@@ -1,8 +1,21 @@
 #!/bin/bash
-echo "Copying Maven settings to '$HOME/.m2/settings.xml'"
-(curl -fsSL https://raw.github.com/daisy/maven-parents/travis/settings.xml) > $HOME/.m2/settings.xml
 
-if [[ "$TRAVIS_BRANCH" == super/* ]]; then
-    echo "Changing SNAPSHOT versions to '${TRAVIS_BRANCH#super/}-SNAPSHOT'"
-    find . -name pom.xml -exec sh -c "cat {} | sed 's/-SNAPSHOT/-${TRAVIS_BRANCH#super/}-SNAPSHOT/' > {}.tmp && mv {}.tmp {}" \;
+if [[ "$HOME" == "/home/travis" ]] ; then
+    echo "Copying Maven settings to '$HOME/.m2/settings.xml'"
+    [ -e $HOME/.m2/settings.xml ] && mv $HOME/.m2/settings.xml $HOME/.m2/settings.xml.bak
+    (curl -fsSL https://raw.github.com/daisy/maven-parents/travis/settings.xml) > $HOME/.m2/settings.xml
+else
+    echo "Not copying settings to '$HOME/.m2/settings.xml'"
+fi
+if [[ -z ${TRAVIS_BRANCH+x} ]]; then
+    BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    BRANCH=$(git config branch.$BRANCH.merge)
+    BRANCH=${BRANCH#refs/heads/}
+else
+    BRANCH=$TRAVIS_BRANCH
+fi
+if [[ "$BRANCH" == super/* ]]; then
+    BRANCH=${BRANCH#super/}
+    echo "Changing SNAPSHOT versions to '$BRANCH-SNAPSHOT'"
+    find . -name pom.xml -exec sh -c "cat {} | sed 's/-SNAPSHOT/-$BRANCH-SNAPSHOT/' > {}.tmp && mv {}.tmp {}" \;
 fi
