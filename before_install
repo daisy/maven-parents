@@ -17,5 +17,33 @@ fi
 if [[ "$BRANCH" == super/* ]]; then
     BRANCH=${BRANCH#super/}
     echo "Changing SNAPSHOT versions to '$BRANCH-SNAPSHOT'"
-    find . -name pom.xml -exec sh -c "cat {} | sed 's/-SNAPSHOT/-$BRANCH-SNAPSHOT/' > {}.tmp && mv {}.tmp {}" \;
+    SAXON=$HOME/.m2/repository/net/sf/saxon/Saxon-HE/9.4/Saxon-HE-9.4.jar
+    if ! [ -e $SAXON ]; then
+        # cd into random directory in order to force Maven "stub" project
+        pushd /tmp >/dev/null
+        mvn -q org.apache.maven.plugins:maven-dependency-plugin:3.0.0:get -Dartifact=net.sf.saxon:Saxon-HE:9.4:jar
+        popd >/dev/null
+    fi
+    XSLT=/tmp/replace-snapshot-versions.xsl
+    curl -fsSL https://raw.github.com/daisy/maven-parents/travis/$(basename $XSLT) >$XSLT
+    java -cp $SAXON net.sf.saxon.Transform -s:pom.xml -xsl:$XSLT BRANCH=$BRANCH OUTPUT_FILENAME=pom.xml.new
+    find . -name pom.xml.new -execdir bash -c 'diff -Bw {} pom.xml >/dev/null && rm {} || mv {} pom.xml' \;
+    # Patch Maven because version ranges currently don't work for imports (see https://issues.apache.org/jira/browse/MNG-4463)
+    if [[ "$HOME" == "/home/travis" ]] ; then
+        if mvn -version | grep -q "3.5.2"; then
+            MAVEN_VERSION="3.5.2"
+            MAVEN_HOME=$(mvn -version | grep 'Maven home' | sed 's/Maven home: //')
+            JAR=$MAVEN_HOME/lib/maven-model-builder-$MAVEN_VERSION.jar
+            curl -fsSL https://raw.github.com/daisy/maven-parents/travis/$(basename $JAR) >$(basename $JAR)
+            sudo mv $JAR $JAR.bak
+            sudo mv $(basename $JAR) $JAR
+        else
+            echo "Expecting Maven version 3.5.2" >&2
+            exit 1
+        fi
+    fi
+    mvn -q org.codehaus.mojo:versions-maven-plugin:2.7:resolve-ranges -DallowSnapshots=true
+    XSLT=/tmp/list-snapshot-dependencies.xsl
+    curl -fsSL https://raw.github.com/daisy/maven-parents/travis/$(basename $XSLT) >$XSLT
+    java -cp $SAXON net.sf.saxon.Transform -s:pom.xml -xsl:$XSLT
 fi
