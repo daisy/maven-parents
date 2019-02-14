@@ -137,6 +137,17 @@
       </repositories>
       <pluginRepositories>
         <pluginRepository>
+          <id>travis-cache</id>
+          <url>file:${user.home}/.m2/cached-repository</url>
+          <releases>
+            <enabled>true</enabled>
+            <checksumPolicy>ignore</checksumPolicy>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </pluginRepository>
+        <pluginRepository>
           <id>sonatype</id>
           <name>OSS Sonatype repo (releases)</name>
           <releases>
