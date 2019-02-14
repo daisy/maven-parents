@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ "$TRAVIS_BRANCH" == release/* ]]; then
+  echo "Not caching downloaded artifacts."
+else
+  echo "Caching downloaded artifacts..."
+  rm -rf $HOME/.m2/cached-repository
+  # in theory it is not needed to filter out the snapshots, because settings.xml ignores them
+  rsync -mr --exclude "*-SNAPSHOT" --exclude "maven-metadata-*.xml" $HOME/.m2/repository/ $HOME/.m2/cached-repository
+fi
+
