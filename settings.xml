@@ -59,6 +59,7 @@
             <enabled>false</enabled>
           </snapshots>
         </repository>
+        <!--
         <repository>
           <id>sonatype</id>
           <name>OSS Sonatype repo (releases)</name>
@@ -74,6 +75,7 @@
           </snapshots>
           <url>https://oss.sonatype.org/content/repositories/releases/</url>
         </repository>
+        -->
         <repository>
           <id>sonatype-snapshots</id>
           <name>OSS Sonatype repo (snapshots)</name>
@@ -89,6 +91,7 @@
           </snapshots>
           <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
+        <!--
         <repository>
           <id>sonatype-apache</id>
           <name>Apache repo (releases)</name>
@@ -134,6 +137,7 @@
           </snapshots>
           <url>https://nexus.codehaus.org/snapshots/</url>
         </repository>
+        -->
       </repositories>
       <pluginRepositories>
         <pluginRepository>
@@ -148,21 +152,6 @@
           </snapshots>
         </pluginRepository>
         <pluginRepository>
-          <id>sonatype</id>
-          <name>OSS Sonatype repo (releases)</name>
-          <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-            <checksumPolicy>warn</checksumPolicy>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-            <updatePolicy>never</updatePolicy>
-            <checksumPolicy>fail</checksumPolicy>
-          </snapshots>
-          <url>https://oss.sonatype.org/content/repositories/releases/</url>
-        </pluginRepository>
-        <pluginRepository>
           <id>sonatype-snapshots</id>
           <name>OSS Sonatype repo (snapshots)</name>
           <releases>
@@ -176,51 +165,6 @@
             <checksumPolicy>fail</checksumPolicy>
           </snapshots>
           <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </pluginRepository>
-        <pluginRepository>
-          <id>sonatype-apache</id>
-          <name>Apache repo (releases)</name>
-          <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-            <checksumPolicy>warn</checksumPolicy>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-            <updatePolicy>never</updatePolicy>
-            <checksumPolicy>fail</checksumPolicy>
-          </snapshots>
-          <url>https://repository.apache.org/releases/</url>
-        </pluginRepository>
-        <pluginRepository>
-          <id>apache-snapshots</id>
-          <name>ASF repo (snapshots)</name>
-          <releases>
-            <enabled>false</enabled>
-            <updatePolicy>never</updatePolicy>
-            <checksumPolicy>warn</checksumPolicy>
-          </releases>
-          <snapshots>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-            <checksumPolicy>fail</checksumPolicy>
-          </snapshots>
-          <url>https://repository.apache.org/snapshots/</url>
-        </pluginRepository>
-        <pluginRepository>
-          <id>codehaus-snapshots</id>
-          <name>Codehaus (snapshots)</name>
-          <releases>
-            <enabled>false</enabled>
-            <updatePolicy>always</updatePolicy>
-            <checksumPolicy>warn</checksumPolicy>
-          </releases>
-          <snapshots>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-            <checksumPolicy>fail</checksumPolicy>
-          </snapshots>
-          <url>https://nexus.codehaus.org/snapshots/</url>
         </pluginRepository>
       </pluginRepositories>
     </profile>
