@@ -49,6 +49,16 @@
       </activation>
       <repositories>
         <repository>
+          <id>central-https</id>
+          <url>https://repo.maven.apache.org/maven2</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+        <repository>
           <id>travis-cache</id>
           <url>file:${user.home}/.m2/cached-repository</url>
           <releases>
@@ -140,6 +150,16 @@
         -->
       </repositories>
       <pluginRepositories>
+        <pluginRepository>
+          <id>central-https</id>
+          <url>https://repo.maven.apache.org/maven2</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </pluginRepository>
         <pluginRepository>
           <id>travis-cache</id>
           <url>file:${user.home}/.m2/cached-repository</url>
