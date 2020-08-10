@@ -57,7 +57,7 @@
         </repository>
         <repository>
           <id>travis-cache</id>
-          <url>file:${user.home}/.m2/cached-repository</url>
+          <url>file:/home/travis/.m2/cached-repository</url>
           <releases>
             <enabled>true</enabled>
             <checksumPolicy>ignore</checksumPolicy>
@@ -159,7 +159,7 @@
         </pluginRepository>
         <pluginRepository>
           <id>travis-cache</id>
-          <url>file:${user.home}/.m2/cached-repository</url>
+          <url>file:/home/travis/.m2/cached-repository</url>
           <releases>
             <enabled>true</enabled>
             <checksumPolicy>ignore</checksumPolicy>
